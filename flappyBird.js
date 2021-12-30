@@ -130,7 +130,7 @@ function draw(){
 }
 function maxScore(){
     arr = window.localStorage.getItem('Score Array');
-    if (arr != null){
+    if (arr == null){
         return 0;
     }
     max = arr[0];
