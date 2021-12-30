@@ -115,7 +115,6 @@ function draw(){
         
     }
 
-
     ctx.drawImage(fg,0,cvs.height - fg.height,400,fg.height);
     
     ctx.drawImage(bird,bX,bY);
@@ -129,6 +128,15 @@ function draw(){
     myReq = requestAnimationFrame(draw);
     
 }
+function maxScore(){
+    arr = window.localStorage.getItem('Score Array');
+    max = arr[0];
+    for(let i =0;i<arr.length;i++){
+        if(max<arr[i]){}
+        max = arr[i];
+    }
+    return max;
+}
 function getMousePosition(cvs, event) {
     let rect = cvs.getBoundingClientRect();
     let x = event.clientX - rect.left;
@@ -139,18 +147,12 @@ function getMousePosition(cvs, event) {
         location.reload()
     }
 }
-function maxScore(){
-    arr = window.localStorage.getItem('Score Array');
-    max = arr[0];
-    for(let i =0;i<arr.length;i++){
-        if(max<arr[i]){}
-        max = arr[i];
-    }
-    return max;
-}
 
 draw();
-canvasElem.addEventListener("mousedown", function(e) {getMousePosition(canvasElem, e);});
+canvasElem.addEventListener("mousedown", function(e)
+{
+    getMousePosition(canvasElem, e);
+});
 
 
 
