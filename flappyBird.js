@@ -65,6 +65,9 @@ let maxS =0;
 
 let myReq;
 let canvasElem = document.querySelector("canvas");
+let localStore;
+let arr;
+let max;
 
 // draw images
 
@@ -92,7 +95,7 @@ function draw(){
         
         if( bX + bird.width >= pipe[i].x && bX <= pipe[i].x + pipeNorth.width && (bY <= pipe[i].y + pipeNorth.height || bY+bird.height >= pipe[i].y+constant) || bY + bird.height >=  cvs.height - fg.height){
             scoreArr.push(score);
-            localStorage.setItem('Score Array', scoreArr);
+            localStore = window.localStorage.setItem('Score Array', scoreArr);
             ctx.drawImage(gameOver,100,90);
             ctx.drawImage(start,160,260,100,50)
             // startButton();
@@ -105,19 +108,20 @@ function draw(){
             score++;
             scor.play();
         }
-        function maxScore(){
-            let arr = localStorage.getItem('Score Array');
-            let max = arr[0];
-            for(let i =0;i<arr.length;i++){
-                if(max<arr[i]){}
-                max = arr[i];
-            }
-            return max;
-        }
+
         // startButton()
         maxS = maxScore();
         
         
+    }
+    function maxScore(){
+        arr = window.localStorage.getItem('Score Array');
+        max = arr[0];
+        for(let i =0;i<arr.length;i++){
+            if(max<arr[i]){}
+            max = arr[i];
+        }
+        return max;
     }
 
     ctx.drawImage(fg,0,cvs.height - fg.height,400,fg.height);
